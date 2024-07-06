@@ -12,6 +12,8 @@ export const FindVandor = async (email: string, id: string | undefined) => {
 
 }
 
+
+
 export const CreateVandor = async (req: Request, res: Response, next: NextFunction) => {
 
   const { name, address, pincode, foodType, email, password, ownerName, phone } = <CreateVandorInput>req.body;

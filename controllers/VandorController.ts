@@ -3,6 +3,8 @@ import { VandorLoginInputs, EditVandorInput } from '../dto';
 import { FindVandor } from './AdminController';
 import { GenerateSignature, ValidatePassword } from '../utils/passwordUnility';
 
+
+
 export const VandorLogin = async (req: Request, res: Response, next: NextFunction) => {
   const { email, password } = <VandorLoginInputs>req.body;
 
@@ -30,6 +32,8 @@ export const VandorLogin = async (req: Request, res: Response, next: NextFunctio
 
 }
 
+
+
 export const GetVandorProfile = async (req: Request, res: Response, next: NextFunction) => {
 
   const user = req.user;
@@ -43,6 +47,8 @@ export const GetVandorProfile = async (req: Request, res: Response, next: NextFu
   })
 
 }
+
+
 
 export const UpdateVandorProfile = async (req: Request, res: Response, next: NextFunction) => {
 
@@ -67,6 +73,8 @@ export const UpdateVandorProfile = async (req: Request, res: Response, next: Nex
     "messsage": "Vandor Information not found"
   })
 }
+
+
 
 export const UpdateVandorService = async (req: Request, res: Response, next: NextFunction) => {
   const { foodTypes, name, address, phone } = <EditVandorInput>req.body;
