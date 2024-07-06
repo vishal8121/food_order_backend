@@ -9,4 +9,7 @@ router.get('/profile', GetVandorProfile);
 router.patch('/profile', UpdateVandorProfile);
 router.patch('/service', UpdateVandorService);
 
+router.post('/food');
+router.get('/foods');
+
 export { router as VandorRoute };
