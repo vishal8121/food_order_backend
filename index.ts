@@ -2,15 +2,17 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 
-
 import { AdminRoute, VandorRoute } from './routes';
 import { MONGO_URI } from './config/index';
 
 const app = express();
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 })); // use this because we deal with multi-part file 
+
+app.use('/images', express.static('/images'));
 
 app.use('/admin', AdminRoute);
 app.use('/vandor', VandorRoute);
