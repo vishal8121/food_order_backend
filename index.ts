@@ -1,32 +1,20 @@
 import express from 'express';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
+import App from './services/expressApp';
+import dbConnection from './services/database';
 
-import { AdminRoute, VandorRoute } from './routes';
-import { MONGO_URI } from './config/index';
+const StartServer = async () => {
+  const app = express();
 
-const app = express();
+  // call database connection function
+  await dbConnection();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-})); // use this because we deal with multi-part file 
+  await App(app);
 
-app.use('/images', express.static('/images'));
-
-app.use('/admin', AdminRoute);
-app.use('/vandor', VandorRoute);
+  app.listen(7000, () => {
+    console.log("listening on Port 7000");
 
 
-mongoose.connect(MONGO_URI,).then(result => {
-  console.log("connection established")
-    ;
-}).catch(err => {
-  console.log("error:" + err);
-})
+  });
+}
 
-const PORT = 7000;
-
-app.listen(PORT, () => {
-  console.log('App is listening on port ' + PORT);
-});
+StartServer(); 
